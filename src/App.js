@@ -20,8 +20,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<BookList />}/>
-
-        
         <Route path="/create-book" element={<PrivateRoute>
               <BookForm />
             </PrivateRoute>

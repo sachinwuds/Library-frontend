@@ -36,16 +36,6 @@ const UpdateBookForm = () => {
       };
     
    
-    // if (cover_image) {
-    //     const data = {
-    //         title,
-    //         author,
-    //         isbn,
-    //         publication_year,
-    //         cover_image
-    //       };  // Append the cover image if updated
-    // }
-
     // Send the updated book details to the API
     axiosInstance.put(`/books/${bookId}`, data)  // Replace with your API endpoint
       .then((response) => {
