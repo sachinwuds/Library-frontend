@@ -2,7 +2,7 @@ import React, { useState, useEffect  } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import config from '../config';
 import axios from 'axios';
-import { useAuth } from './AuthContext';
+import { useAuth } from '../services/AuthContext';
 
 const LoginPage = () => {
   const baseURL = config.baseURL;
