@@ -1,8 +1,12 @@
 import React, { useState, useEffect  } from 'react';
-import axiosInstance from '../axiosInstance';
 import { useNavigate } from 'react-router-dom'; 
+import config from '../config';
+import axios from 'axios';
+import { useAuth } from './AuthContext';
 
 const LoginPage = () => {
+  const baseURL = config.baseURL;
+  const { login } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); 
@@ -20,30 +24,69 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosInstance.post('/auth/login', { username, password });
+      const response = await axios.post(`${baseURL}/auth/login`, { username, password });
       localStorage.setItem('token', response.data.access_token); // Save token to local storage
+        login();
       navigate('/'); 
     } catch (error) {
       console.error('Error logging in:', error);
     }
   };
 
+  const onChangeUsername = (e) => {
+    const username = e.target.value;
+    setUsername(username);
+  };
+
+  const onChangePassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
+  };
+  
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          username:
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </label>
-        <br />
-        <button type="submit">Login</button>
-      </form>
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-md-4">
+          <div className="card shadow-lg">
+            <div className="card-body">
+              <h2 className="text-center mb-4">Login</h2>
+              <form onSubmit={handleSubmit}>
+                <div className="form-group mb-3">
+                  <label htmlFor="username">Username:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="username"
+                    value={username}
+                    onChange={onChangeUsername}
+                    required
+                  />
+                </div>
+                <div className="form-group mb-3">
+                  <label htmlFor="password">Password:</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    value={password}
+                    onChange={onChangePassword}
+                    required
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary btn-block">
+                  Login
+                </button>
+              </form>
+              <div className="text-center mt-3">
+                <p>Don't have an account?</p>
+                <a href="/register" className="btn btn-secondary">
+                  Create User
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

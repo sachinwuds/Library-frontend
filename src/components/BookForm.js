@@ -20,37 +20,76 @@ function BookForm() {
   };
 
   return (
-    <div>
+    <div className="container mt-4">
       <h2>Add Book</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Title:</label>
-          <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
+        {/* Title Field */}
+        <div className="mb-3">
+          <label className="form-label">Title:</label>
+          <input
+            type="text"
+            className="form-control"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
         </div>
-        <div>
-          <label>Author Name:</label>
-          <input type="text" value={author} onChange={e => setAuthorId(e.target.value)} />
+
+        {/* Author Field */}
+        <div className="mb-3">
+          <label className="form-label">Author Name:</label>
+          <input
+            type="text"
+            className="form-control"
+            value={author}
+            onChange={(e) => setAuthorId(e.target.value)}
+            required
+          />
         </div>
-        <div>
-          <label>Isbn</label>
-          <input type="text" value={isbn} onChange={e => setIsbn(e.target.value)} />
+
+        {/* ISBN Field */}
+        <div className="mb-3">
+          <label className="form-label">ISBN:</label>
+          <input
+            type="text"
+            className="form-control"
+            value={isbn}
+            onChange={(e) => setIsbn(e.target.value)}
+            required
+          />
         </div>
-        <div>
-          <label>Publication Year</label>
-          <input type="text" value={publication_year} onChange={e => setPublication_year(e.target.value)} />
+
+        {/* Publication Year Field */}
+        <div className="mb-3">
+          <label className="form-label">Publication Year:</label>
+          <input
+            type="text"
+            className="form-control"
+            value={publication_year}
+            onChange={(e) => setPublication_year(e.target.value)}
+            required
+          />
         </div>
-        <div>
-          <label>Cover Image:</label>
+
+        {/* Cover Image Field */}
+        <div className="mb-3">
+          <label className="form-label">Cover Image:</label>
           <input
             type="file"
-            onChange={e => setCoverImage(e.target.files[0])} // Set the cover image
+            className="form-control"
+            onChange={(e) => setCoverImage(e.target.files[0])} // Set the cover image
             accept="image/*"
           />
         </div>
-        <button type="submit">Add Book</button>
+
+        {/* Submit Button */}
+        <button type="submit" className="btn btn-primary">
+          Add Book
+        </button>
       </form>
     </div>
   );
-}
+};
+
 
 export default BookForm;
