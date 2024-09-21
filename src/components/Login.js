@@ -1,5 +1,5 @@
 import React, { useState, useEffect  } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 import config from '../config';
 import axios from 'axios';
 import { useAuth } from '../services/AuthContext';
@@ -79,9 +79,9 @@ const LoginPage = () => {
               </form>
               <div className="text-center mt-3">
                 <p>Don't have an account?</p>
-                <a href="/register" className="btn btn-secondary">
+                <Link to="/register" className="btn btn-secondary">
                   Create User
-                </a>
+                </Link>
               </div>
             </div>
           </div>
